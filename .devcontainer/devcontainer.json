@@ -20,11 +20,9 @@
         "charliermarsh.ruff",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss",
         "amazonwebservices.aws-toolkit-vscode",
         "ms-azuretools.vscode-docker",
-        "humao.rest-client",
-        "mtxr.sqltools"
+        "humao.rest-client"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -39,8 +37,8 @@
     }
   },
 
-  "postCreateCommand": "pip install -e '.[dev]' && echo 'Backend deps installed'",
-  "postStartCommand": "python -m app.db.seed --force-recreate",
+  "postCreateCommand": "pip install -e '.[dev]' && echo '✓ Backend deps installed'",
+  "postStartCommand": "sleep 2 && python -m app.db.seed --force-recreate && echo '✓ DB geseedet'",
 
   "forwardPorts": [8000, 8001, 5173],
   "portsAttributes": {

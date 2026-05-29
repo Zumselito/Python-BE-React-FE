@@ -31,10 +31,10 @@ cd nutritrack
 ### Ohne Devcontainer (Docker Compose direkt)
 
 ```bash
-docker compose up --build
+docker compose -f .devcontainer/docker-compose.yml up --build
 
 # Datenbank mit Beispieldaten befüllen:
-docker compose exec backend python -m app.db.seed --force-recreate
+docker compose -f .devcontainer/docker-compose.yml exec backend python -m app.db.seed --force-recreate
 ```
 
 ## API-Dokumentation
@@ -76,7 +76,9 @@ Jede Zutat (`/100g Rohgewicht`) enthält:
 
 ```
 nutritrack/
-├── .devcontainer/          # VS Code Devcontainer-Konfiguration
+├── .devcontainer/
+│   ├── devcontainer.json   # VS Code Devcontainer-Konfiguration
+│   └── docker-compose.yml  # Lokale Entwicklungsumgebung
 ├── .github/workflows/      # GitHub Actions CI/CD
 ├── backend/
 │   ├── app/
@@ -89,8 +91,7 @@ nutritrack/
 │   ├── Dockerfile
 │   └── pyproject.toml
 ├── frontend/               # React + TypeScript (folgt)
-├── infrastructure/         # AWS CDK (folgt)
-└── docker-compose.yml
+└── infrastructure/         # AWS CDK (folgt)
 ```
 
 ## CI/CD Pipeline
