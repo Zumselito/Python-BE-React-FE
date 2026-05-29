@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+coverage.xml
+.coverage
+
+# Node / Frontend
+node_modules/
+dist/
+.next/
+.nuxt/
+*.local
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Docker
+*.log
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AWS CDK
+infrastructure/cdk.out/
+infrastructure/node_modules/

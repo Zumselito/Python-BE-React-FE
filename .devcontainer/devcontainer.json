@@ -1,0 +1,51 @@
+{
+  "name": "NutriTrack Dev",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "amazonwebservices.aws-toolkit-vscode",
+        "ms-azuretools.vscode-docker",
+        "humao.rest-client",
+        "mtxr.sqltools"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"]
+      }
+    }
+  },
+
+  "postCreateCommand": "pip install -e '.[dev]' && echo 'Backend deps installed'",
+  "postStartCommand": "python -m app.db.seed --force-recreate",
+
+  "forwardPorts": [8000, 8001, 5173],
+  "portsAttributes": {
+    "8000": { "label": "FastAPI Backend" },
+    "8001": { "label": "DynamoDB Local" },
+    "5173": { "label": "React Frontend" }
+  }
+}
